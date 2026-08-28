@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pacman</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Merriweather:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark">P//M</span><span>PACMAN</span></div>
+      <div class="topbar-right"><div class="session-label"><span class="status-dot"></span> INTERNAL TRANSFER // TRAINING RUN</div><img class="brand-logo" src="https://www.legalandgeneral.com/asset/492094/globalassets/global-shared-assets/logos/landg_logo.svg" alt="L&amp;G"></div>
+    </header>
+
+    <section class="intro">
+      <div>
+        <h1>Clear the maze.<br><em>Keep the details.</em></h1>
+      </div>
+      <p class="brief">Navigate the case file. When a ghost catches you, prove what you know to continue the run.</p>
+    </section>
+
+    <section class="game-layout">
+      <div class="board-wrap">
+        <div class="board-meta"><span>LIVE BOARD</span><span id="boardState">READY TO DEPLOY</span></div>
+        <canvas id="gameCanvas" width="560" height="620" aria-label="Pacman game board"></canvas>
+        <div class="mobile-controls" aria-label="Movement controls">
+          <button data-direction="up" aria-label="Move up">UP</button>
+          <div><button data-direction="left" aria-label="Move left">LEFT</button><button data-direction="down" aria-label="Move down">DOWN</button><button data-direction="right" aria-label="Move right">RIGHT</button></div>
+        </div>
+      </div>
+      <aside class="side-panel">
+        <div class="score-block"><span class="label">CURRENT SCORE</span><strong id="score">000000</strong></div>
+        <div class="stats-row"><div><span class="label">LIVES</span><span id="lives" class="lives">3</span></div><div><span class="label">DOTS LEFT</span><span id="dotsLeft">00</span></div></div>
+        <div class="divider"></div>
+        <div class="briefing"><span class="label">MISSION BRIEF</span><p>Collect every case dot. Avoid the ghosts. A collision pauses the run for a question.</p></div>
+        <button id="startButton" class="start-button">START RUN <span>ENTER</span></button>
+        <p class="hint">ARROW KEYS OR WASD TO MOVE</p>
+      </aside>
+    </section>
+  </main>
+
+  <div id="questionModal" class="modal-backdrop" hidden>
+    <div class="question-card" role="dialog" aria-modal="true" aria-labelledby="questionTitle">
+      <div class="question-top"><span class="warning">COLLISION DETECTED</span><span id="questionCount">CHECK 01 / 08</span></div>
+      <h2 id="questionTitle">Quick knowledge check.</h2>
+      <p id="questionText"></p>
+      <div id="answers" class="answers"></div>
+      <p id="feedback" class="feedback" aria-live="polite"></p>
+    </div>
+  </div>
+  <div id="endScreen" class="modal-backdrop" hidden>
+    <div class="question-card end-card"><span class="warning">RUN COMPLETE</span><h2 id="endTitle">Case cleared.</h2><p id="endText"></p><button id="restartButton" class="start-button">RUN IT BACK <span>ENTER</span></button></div>
+  </div>
+  <script src="game.js"></script>
+</body>
+</html>
